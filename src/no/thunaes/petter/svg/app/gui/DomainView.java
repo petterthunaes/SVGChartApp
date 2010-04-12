@@ -1,19 +1,16 @@
 package no.thunaes.petter.svg.app.gui;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import no.thunaes.petter.svg.app.gui.domain.Hello;
+import no.thunaes.petter.svg.app.gui.domain.ChartInput;
 
 public class DomainView extends JPanel {
 
-	Hello test;
+	ChartInput chartInput;
 	
 	public DomainView() {
-		add(test = new Hello());
+		add(chartInput = new ChartInput(), null);
+		
 	}
-
-	public void hello() {
-		test.hello();
-	}
+	
 }

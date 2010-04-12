@@ -9,8 +9,10 @@ public class Controller {
 	public static void init(SVGChartApp ui) {
 		Controller.ui = ui;
 	}
-	
-	public static void hello() {
-		ui.hello();
+
+	public static void addAxisButtons() {
+		// TODO Auto-generated method stub
+		
 	}
+
 }

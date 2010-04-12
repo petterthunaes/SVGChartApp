@@ -25,7 +25,4 @@ public class SVGChartApp extends JFrame {
 		setVisible(true);
 	}
 
-	public void hello() {
-		center.hello();
-	}
 }

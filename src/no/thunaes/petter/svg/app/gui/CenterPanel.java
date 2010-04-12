@@ -13,8 +13,4 @@ public class CenterPanel extends JPanel {
 		add(domainview = new DomainView());
 	}
 
-	public void hello() {
-		domainview.hello();
-		
-	}
 }

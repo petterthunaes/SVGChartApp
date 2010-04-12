@@ -5,10 +5,11 @@ import javax.swing.JPanel;
 
 public class Hello extends JPanel {
 
-	private JLabel label;
+	JLabel label;
 	
 	public Hello() {
 		label = new JLabel();
+		add(label);
 	}
 
 	public void hello() {

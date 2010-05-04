@@ -16,12 +16,15 @@ public class SVGChartApp extends JFrame {
 	public SVGChartApp() {
 		Controller.init(this);
 		setTitle("SVGChartApp");
+		setLayout(new BorderLayout());
 		
 		add(north = new NorthPanel(), BorderLayout.NORTH);
-		add(center = new CenterPanel(), null);
+		add(center = new CenterPanel(), BorderLayout.CENTER);
 		add(south = new SouthPanel(), BorderLayout.SOUTH);
 		
-		setSize(800,500);
+		setSize(425,500);
+		setResizable(false);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 

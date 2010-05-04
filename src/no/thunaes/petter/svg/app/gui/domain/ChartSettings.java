@@ -1,8 +1,7 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,60 +18,25 @@ public class ChartSettings extends JPanel implements ActionListener {
 
 	String[] chartNames = { "Sector", "Bar", "Line", "Scatter" };
 	
-	JTextField chartTitle;
-	JTextArea chartDesc;
-	JComboBox chartType;
+	JTextField chartTitle = new JTextField(25);
+	JTextArea chartDesc = new JTextArea(5, 32);
+	JComboBox chartType = new JComboBox(chartNames);
+	
+	JButton chartAxOne = new JButton("Axe-1");
+	JButton chartAxTwo = new JButton("Axe-2");
+	JButton chartAxThree = new JButton("Axe-3");
 	
 	public ChartSettings() {
-		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		chartType = new JComboBox(chartNames);
-		chartType.addActionListener(this);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(0,0,0,10);
-		c.ipadx = 10;
-		c.gridx = 0;
-		c.gridy = 0;
-		add(chartType, c);
-		
-		chartTitle = new JTextField(15);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(0,0,0,0);
-		c.gridx = 1;
-		c.gridy = 0;
-		c.gridwidth = 2;
-		add(chartTitle, c);
-		
-		chartDesc = new JTextArea(5, 15);
+		setLayout(new FlowLayout(FlowLayout.CENTER));
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		chartDesc.setBorder(BorderFactory.createEtchedBorder());
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(10, 0, 0, 0);
-		c.gridx = 0;
-		c.gridy = 1;
-		c.gridwidth = 3;
-		add(chartDesc, c);
 		
-		JButton axisOne = new JButton("Axis 1");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(10,0,0,10);
-		c.gridx = 0;
-		c.gridy = 2;
-		c.gridwidth = 1;
-		add(axisOne, c);
-		
-		JButton axisTwo = new JButton("Axis 2");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 1;
-		c.gridy = 2;
-		add(axisTwo, c);
-		
-		JButton axisThree = new JButton("Axis 3");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.insets = new Insets(10,0,0,0);
-		c.gridx = 2;
-		c.gridy = 2;
-		add(axisThree, c);
+		add(chartType);
+		add(chartTitle);
+		add(chartDesc);
+		add(chartAxOne);
+		add(chartAxTwo);
+		add(chartAxThree);
 	}
 
 	@Override

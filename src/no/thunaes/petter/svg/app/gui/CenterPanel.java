@@ -10,7 +10,7 @@ public class CenterPanel extends JPanel {
 	
 	public CenterPanel() {
 		setLayout(new BorderLayout());
-		add(domainview = new DomainView());
+		add(domainview = new DomainView(), BorderLayout.LINE_START);
 	}
 
 }

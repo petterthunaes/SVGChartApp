@@ -12,7 +12,7 @@ public class DomainView extends JPanel {
 	
 	public DomainView() {
 		setLayout(new BorderLayout());
-		add(chartInput = new ChartInput(), BorderLayout.LINE_START);
+		add(chartInput = new ChartInput());
 		
 	}
 	

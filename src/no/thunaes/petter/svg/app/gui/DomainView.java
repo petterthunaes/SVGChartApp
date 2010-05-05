@@ -4,15 +4,15 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import no.thunaes.petter.svg.app.gui.domain.ChartInput;
+import no.thunaes.petter.svg.app.gui.domain.ChartFrame;
 
 public class DomainView extends JPanel {
 
-	ChartInput chartInput;
+	ChartFrame chartInput;
 	
 	public DomainView() {
 		setLayout(new BorderLayout());
-		add(chartInput = new ChartInput());
+		add(chartInput = new ChartFrame());
 		
 	}
 	

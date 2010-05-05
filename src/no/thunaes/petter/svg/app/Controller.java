@@ -12,7 +12,6 @@ public class Controller {
 
 	public static void addAxisButtons() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -23,7 +23,7 @@ public class SVGChartApp extends JFrame {
 		add(south = new SouthPanel(), BorderLayout.SOUTH);
 		
 		setSize(425,500);
-		setResizable(false);
+		//setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}

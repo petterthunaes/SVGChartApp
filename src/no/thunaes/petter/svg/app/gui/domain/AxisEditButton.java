@@ -20,7 +20,7 @@ public class AxisEditButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new RangeEditWindow(range);
+		new AxisEditWindow(range);
 	}
 
 }

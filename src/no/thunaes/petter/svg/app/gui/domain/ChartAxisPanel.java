@@ -19,8 +19,8 @@ public class ChartAxisPanel extends JPanel {
 		if(axisEditButtons.size() > 0)
 			axisEditButtons.clear();
 		
-		for(int k = 0; k < ranges.length; k++) {
-			axisEditButtons.add(new AxisEditButton(ranges[k]));
+		for(Range r: ranges) {
+			axisEditButtons.add(new AxisEditButton(r));
 		}
 		
 		updateButtons();
@@ -30,8 +30,8 @@ public class ChartAxisPanel extends JPanel {
 		if(this.getComponentCount() > 0)
 			this.removeAll();
 		
-		for(int j = 0; j < axisEditButtons.size(); j++) {
-			add(axisEditButtons.get(j));
+		for(AxisEditButton j: axisEditButtons) {
+			add(j);
 		}
 	}
 	

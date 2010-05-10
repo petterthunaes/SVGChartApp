@@ -1,27 +1,26 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
 import java.awt.BorderLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class ValueEditWindow extends JFrame {
 
-	JPanel test = new JPanel();
-	
-	public ValueEditWindow() {
-		test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
-		
+	private ValuesPanel valuesPanel;
+
+	public ValueEditWindow(ItemPanel itemPanel) {		
+		setLayout(new BorderLayout());
 		setSize(370,500);
-		setVisible(true);
+		add(new ValueMenuPanel(itemPanel), BorderLayout.NORTH);
+		add(valuesPanel = new ValuesPanel(itemPanel), BorderLayout.CENTER);
+	}
+
+	public void addValuePanel() {
+		valuesPanel.addValuePanel();
 		
-		test.add(new ValuePanel());
-		test.add(new ValuePanel());
-		test.add(new ValuePanel());
+	}
+
+	public void removeValuePanel(ValuePanel v) {
+		valuesPanel.removeValuePanel(v);
 		
-		add(new JButton("Add"), BorderLayout.NORTH);
-		add(test, BorderLayout.CENTER);
 	}
 }

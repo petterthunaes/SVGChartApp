@@ -15,24 +15,24 @@ import no.smidsrod.robin.svg.library.Range;
 
 public class AxisEditWindow extends JFrame {
 	
-	JLabel labMin = new JLabel("Min");
-	JLabel labMax = new JLabel("Max");
-	JLabel labUni = new JLabel("Unit");	
-	JTextField txtMin = new JTextField(5);
-	JTextField txtMax = new JTextField(5);
-	JTextField txtUni = new JTextField(5);
+	private JLabel labMin = new JLabel("Min");
+	private JLabel labMax = new JLabel("Max");
+	private JLabel labUni = new JLabel("Unit");	
+	private JTextField txtMin = new JTextField(5);
+	private JTextField txtMax = new JTextField(5);
+	private JTextField txtUni = new JTextField(5);
 	
-	JLabel labInt = new JLabel("Interval");
-	JLabel labCun = new JLabel("Count");
-	JLabel labEnb = new JLabel("Enable");
-	JTextField txtInt = new JTextField(5);
-	JTextField txtCun = new JTextField(5);
-	JCheckBox chbEnb = new JCheckBox();
+	private JLabel labInt = new JLabel("Interval");
+	private JLabel labCun = new JLabel("Count");
+	private JLabel labEnb = new JLabel("Enable");
+	private JTextField txtInt = new JTextField(5);
+	private JTextField txtCun = new JTextField(5);
+	private JCheckBox chbEnb = new JCheckBox();
 	
-	JLabel labAxis = new JLabel("Axis-settings");
-	JLabel labGrid = new JLabel("Grid-settings");
-	JButton btnSave = new JButton("Ok");
-	JButton btnExit = new JButton("Exit");
+	private JLabel labAxis = new JLabel("Axis-settings");
+	private JLabel labGrid = new JLabel("Grid-settings");
+	private JButton btnSave = new JButton("Ok");
+	private JButton btnExit = new JButton("Exit");
 	
 	public AxisEditWindow(Range range) {
 		Dimension labelSize = new Dimension(60,10);

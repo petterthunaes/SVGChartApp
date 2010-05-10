@@ -2,6 +2,7 @@ package no.thunaes.petter.svg.app.gui.domain;
 
 
 
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class ChartAxisPanel extends JPanel {
 	private List<AxisEditButton> axisEditButtons = new ArrayList<AxisEditButton>();
 	
 	public ChartAxisPanel() {
+		//setLayout(new FlowLayout(FlowLayout.LEFT));
 	}
 	
 	public void updateRange(Range[] ranges) {

@@ -5,13 +5,15 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import no.thunaes.petter.svg.app.Controller;
+import no.thunaes.petter.svg.app.gui.domain.ItemPanel;
+import no.thunaes.petter.svg.app.gui.domain.ValuePanel;
 
 
 public class SVGChartApp extends JFrame {
 
-	CenterPanel center;
-	SouthPanel south;
-	NorthPanel north;
+	private CenterPanel center;
+	private SouthPanel south;
+	private NorthPanel north;
 	
 	public SVGChartApp() {
 		Controller.init(this);
@@ -22,10 +24,34 @@ public class SVGChartApp extends JFrame {
 		add(center = new CenterPanel(), BorderLayout.CENTER);
 		add(south = new SouthPanel(), BorderLayout.SOUTH);
 		
-		setSize(400,500);
-		setResizable(false);
+		setSize(400,600);
+		setResizable(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
+	}
+
+	public void reCalcUI() {
+		center.reCalcUI();
+	}
+
+	public void addItemPanel() {
+		center.addItemPanel();
+		
+	}
+
+	public void addValuePanel(ItemPanel i) {
+		center.addValuePanel(i);
+		
+	}
+
+	public void removeValuePanel(ItemPanel i, ValuePanel v) {
+		center.removeValuePanel(i,v);
+		
+	}
+
+	public void removeItemPanel(ItemPanel i) {
+		center.removeItemPanel(i);
+		
 	}
 
 }

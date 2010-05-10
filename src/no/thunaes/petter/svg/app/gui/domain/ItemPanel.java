@@ -11,37 +11,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ItemPanel extends JPanel {
+import no.thunaes.petter.svg.app.Controller;
+
+public class ItemPanel extends JPanel implements ActionListener {
 	
-	JButton valueAdd = new JButton("V");
-	JButton valueDel = new JButton("-");
+	private ValueEditWindow valueEditWindow;
 	
-	JLabel labName = new JLabel("Label");
-	JLabel labColr = new JLabel("Color");
-	JLabel labHigh = new JLabel("Highlight");
+	private JButton valueAdd = new JButton("V");
+	private JButton valueDel = new JButton("-");
 	
-	JTextField valLabel = new JTextField(10);
-	JCheckBox  valHighl = new JCheckBox();
-	JTextField valColor = new JTextField(7);
+	private JLabel labName = new JLabel("Label");
+	private JLabel labColr = new JLabel("Color");
+	private JLabel labHigh = new JLabel("Highlight");
+	
+	private JTextField valLabel = new JTextField(10);
+	private JCheckBox  valHighl = new JCheckBox();
+	private JTextField valColor = new JTextField(7);
 	
 	public ItemPanel() {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		
-		
+		setPreferredSize(new Dimension(390, 65));
 		labName.setPreferredSize(new Dimension(115, 15));
 		labColr.setPreferredSize(new Dimension(82,15));
-		labHigh.setPreferredSize(new Dimension(70,15));
+		labHigh.setPreferredSize(new Dimension(60,15));
 		
-		valHighl.setPreferredSize(new Dimension(70, 15));
-
-		valueAdd.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new ValueEditWindow();
-				
-			}
-		});
+		valHighl.setPreferredSize(new Dimension(60, 15));
+		
+		valueAdd.addActionListener(this);
+		valueDel.addActionListener(this);
+		
+		valueEditWindow = new ValueEditWindow(this);
 		
 		add(labName);
 		add(labColr);
@@ -51,7 +50,28 @@ public class ItemPanel extends JPanel {
 		add(valHighl);
 		add(valueAdd);
 		add(valueDel);
+		
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource().equals(valueAdd)) {
+			valueEditWindow.setVisible(true);
+		}
+		if (arg0.getSource().equals(valueDel)) {
+			Controller.removeItemPanel(this);
+		}
+	}
+
+	public void addValuePanel() {
+		valueEditWindow.addValuePanel();
+		
+	}
+
+	public void removeValuePanel(ValuePanel v) {
+		valueEditWindow.removeValuePanel(v);
+		
 	}
 
 }

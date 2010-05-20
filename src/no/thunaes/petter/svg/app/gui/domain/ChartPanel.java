@@ -18,32 +18,26 @@ public class ChartPanel extends JPanel {
 
 	public void reCalcUI() {
 		this.repaint();
-		
 	}
 
 	public void addItemPanel() {
-		chartItems.addItemPanel();
-		
+		chartItems.addItemPanel();	
 	}
 
 	public void addValuePanel(ItemPanel i) {
-		chartItems.addValuePanel(i);
-		
+		chartItems.addValuePanel(i);	
 	}
 
 	public void removeValuePanel(ItemPanel i, ValuePanel v) {
-		chartItems.removeValuePanel(i,v);
-		
+		chartItems.removeValuePanel(i,v);		
 	}
 
 	public void removeItemPanel(ItemPanel i) {
 		chartItems.removeItemPanel(i);
-		
 	}
 
 	public void generateValueFields(ItemPanel i, ValuePanel v) {
 		chartItems.generateValueFields(i, v, chartSettings.getChart());
-		
 	}
 
 }

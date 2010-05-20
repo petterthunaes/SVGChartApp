@@ -8,7 +8,6 @@ import javax.swing.JScrollPane;
 
 import no.smidsrod.robin.svg.library.Chart;
 
-
 public class ChartItemsPanel extends JPanel {
 	
 	private ItemsPanel itemsPanel = new ItemsPanel();

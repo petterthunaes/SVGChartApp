@@ -3,6 +3,8 @@ package no.thunaes.petter.svg.app.gui.domain;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
+import no.smidsrod.robin.svg.library.Chart;
+
 public class ValueEditWindow extends JFrame {
 
 	private ValuesPanel valuesPanel;
@@ -21,6 +23,11 @@ public class ValueEditWindow extends JFrame {
 
 	public void removeValuePanel(ValuePanel v) {
 		valuesPanel.removeValuePanel(v);
+		
+	}
+
+	public void generateValueFields(ValuePanel v, Chart c) {
+		valuesPanel.generateValueFields(v, c);
 		
 	}
 }

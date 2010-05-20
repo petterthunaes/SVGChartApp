@@ -41,4 +41,9 @@ public class CenterPanel extends JPanel {
 		
 	}
 
+	public void generateValueFields(ItemPanel i, ValuePanel v) {
+		domainview.generateValueFields(i, v);
+		
+	}
+
 }

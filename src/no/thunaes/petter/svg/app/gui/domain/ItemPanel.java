@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import no.smidsrod.robin.svg.library.Chart;
 import no.thunaes.petter.svg.app.Controller;
 
 public class ItemPanel extends JPanel implements ActionListener {
@@ -71,6 +72,11 @@ public class ItemPanel extends JPanel implements ActionListener {
 
 	public void removeValuePanel(ValuePanel v) {
 		valueEditWindow.removeValuePanel(v);
+		
+	}
+
+	public void generateValueFields(ValuePanel v, Chart c) {
+		valueEditWindow.generateValueFields(v, c);
 		
 	}
 

@@ -34,6 +34,12 @@ public class Controller {
 		
 	}
 
+	public static void generateValueFields(ItemPanel i,
+			ValuePanel v) {
+		ui.generateValueFields(i, v);
+		
+	}
+
 
 
 }

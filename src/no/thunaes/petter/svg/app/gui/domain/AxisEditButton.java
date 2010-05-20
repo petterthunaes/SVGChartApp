@@ -14,7 +14,12 @@ public class AxisEditButton extends JButton implements ActionListener {
 	public AxisEditButton(Range range) {
 		this.range = range;
 		
-		setText("Axis-" + range.getDimension());
+		if (range.getName().isEmpty()) {
+			setText("Axis " + range.getDimension());
+		} else {
+			setText(range.getName());
+		}
+		
 		addActionListener(this);
 	}
 

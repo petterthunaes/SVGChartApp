@@ -5,6 +5,8 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import no.smidsrod.robin.svg.library.Chart;
+
 public class ItemsPanel extends JPanel {
 	
 	//List<ItemPanel> itemPanels = new ArrayList<ItemPanel>();
@@ -32,6 +34,11 @@ public class ItemsPanel extends JPanel {
 
 	public void removeValuePanel(ItemPanel i, ValuePanel v) {
 		i.removeValuePanel(v);
+		
+	}
+
+	public void generateValueFields(ItemPanel i, ValuePanel v, Chart c) {
+		i.generateValueFields(v, c);
 		
 	}
 }

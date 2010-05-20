@@ -10,17 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import no.smidsrod.robin.svg.library.Chart;
 import no.thunaes.petter.svg.app.Controller;
 
 public class ValuePanel extends JPanel implements ActionListener {
-
-	private JLabel labOne= new JLabel("Value 1");
-	private JLabel labTwo = new JLabel("Value 2");
-	private JLabel labThr = new JLabel("Value 3");
-	
-	private JTextField txtOne = new JTextField(8);
-	private JTextField txtTwo = new JTextField(8);
-	private JTextField txtThr = new JTextField(8);
 	
 	private JButton removeVal = new JButton("-");
 	private ItemPanel itemPanel;
@@ -28,23 +21,31 @@ public class ValuePanel extends JPanel implements ActionListener {
 	public ValuePanel(ItemPanel itemPanel) {
 		this.itemPanel = itemPanel;
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-
-		labOne.setPreferredSize(new Dimension(92,15));
-		labTwo.setPreferredSize(new Dimension(92,15));
-		labThr.setPreferredSize(new Dimension(92,15));
-		removeVal.addActionListener(this);
 		
-		add(labOne);
-		add(labTwo);
-		add(labThr);
-		add(txtOne);
-		add(txtTwo);
-		add(txtThr);
+		Controller.generateValueFields(itemPanel, this);
+
+		removeVal.addActionListener(this);
+
 		add(removeVal);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Controller.removeValuePanel(itemPanel, this);
+	}
+
+	public void generateValueFields(Chart c) {
+		for(int i = 0; i < c.getDimensionCount(); i++) {
+			JLabel label = new JLabel(c.getRange(i).getName());
+			label.setPreferredSize(new Dimension(92,15));
+			add(label);
+		}
+		
+		for(int i = 0; i < c.getDimensionCount(); i++) {
+			add(new JTextField(8));
+		}
+		
+		
+		
 	}
 }

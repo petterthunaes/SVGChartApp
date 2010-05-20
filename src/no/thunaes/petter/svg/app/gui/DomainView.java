@@ -42,5 +42,10 @@ public class DomainView extends JPanel {
 		chartPanel.removeItemPanel(i);
 		
 	}
+
+	public void generateValueFields(ItemPanel i, ValuePanel v) {
+		chartPanel.generateValueFields(i, v);
+		
+	}
 	
 }

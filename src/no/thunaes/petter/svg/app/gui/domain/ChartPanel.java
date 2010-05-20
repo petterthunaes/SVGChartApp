@@ -41,4 +41,9 @@ public class ChartPanel extends JPanel {
 		
 	}
 
+	public void generateValueFields(ItemPanel i, ValuePanel v) {
+		chartItems.generateValueFields(i, v, chartSettings.getChart());
+		
+	}
+
 }

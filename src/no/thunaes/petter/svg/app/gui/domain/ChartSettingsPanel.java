@@ -10,19 +10,17 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import no.smidsrod.robin.svg.library.BarChart;
 import no.smidsrod.robin.svg.library.Chart;
 import no.smidsrod.robin.svg.library.LineChart;
 import no.smidsrod.robin.svg.library.ScatterChart;
 import no.smidsrod.robin.svg.library.SectorChart;
-import no.thunaes.petter.svg.app.Controller;
 
-/*
- * Axis-1, Dimension(115,20);
- */
-
-public class ChartSettingsPanel extends JPanel implements ActionListener {
+public class ChartSettingsPanel extends JPanel implements ActionListener, DocumentListener {
 
 	private String[] chartTypes = { "", "Sector", "Bar", "Line", "Scatter" };
 	
@@ -30,7 +28,7 @@ public class ChartSettingsPanel extends JPanel implements ActionListener {
 	private JTextArea chartDesc = new JTextArea(5, 32);
 	private JComboBox chartType = new JComboBox(chartTypes);
 	
-	private Chart theChart;
+	private Chart chart;
 	private ChartAxisPanel chartAxisPanel;
 
 	public ChartSettingsPanel() {
@@ -38,13 +36,17 @@ public class ChartSettingsPanel extends JPanel implements ActionListener {
 		setPreferredSize(new Dimension(400, 175));
 		chartDesc.setBorder(BorderFactory.createEtchedBorder());
 
+		chartName.getDocument().addDocumentListener(this);
+		chartDesc.getDocument().addDocumentListener(this);
+		chartType.addActionListener(this);
+		
+		chartName.setEnabled(false);
+		chartDesc.setEnabled(false);
+		
 		add(chartType);
 		add(chartName);
 		add(chartDesc);
 		add(chartAxisPanel = new ChartAxisPanel());
-
-
-		chartType.addActionListener(this);
 	}
 
 	@Override
@@ -53,20 +55,56 @@ public class ChartSettingsPanel extends JPanel implements ActionListener {
 		case 0:
 			break;
 		case 1:
-			theChart = new SectorChart();
+			chart = new SectorChart();
 			break;
 		case 2:
-			theChart = new BarChart();
+			chart = new BarChart();
 			break;
 		case 3:
-			theChart = new LineChart();
+			chart = new LineChart();
 			break;
 		case 4:
-			theChart = new ScatterChart();
+			chart = new ScatterChart();
 			break;
 		}
+		chartType.setEnabled(false);
+		chartName.setEnabled(true);
+		chartDesc.setEnabled(true);
 		
-		chartAxisPanel.updateRange(theChart.getRanges());
+		chartName.setText(chart.getTitle());
+		chartDesc.setText(chart.getDescription());
+		
+		chartAxisPanel.updateRange(chart.getRanges());
 		updateUI();	
 	}
+
+	@Override
+	public void changedUpdate(DocumentEvent arg0) {
+		documentDoEvent(arg0);
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent arg0) {
+		documentDoEvent(arg0);		
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent arg0) {
+		documentDoEvent(arg0);
+	}
+	
+	private void documentDoEvent(DocumentEvent arg0) {
+		Document changed = arg0.getDocument();
+		if(changed.equals(chartName.getDocument())) {
+			chart.setTitle(chartName.getText());
+		}		
+		if(changed.equals(chartDesc.getDocument())) {
+			chart.setDescription(chartDesc.getText());
+		}
+	}
+	
+	public Chart getChart() {
+		return chart;
+	}
+	
 }

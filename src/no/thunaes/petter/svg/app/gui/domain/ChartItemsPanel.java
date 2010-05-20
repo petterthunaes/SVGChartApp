@@ -6,6 +6,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import no.smidsrod.robin.svg.library.Chart;
+
 
 public class ChartItemsPanel extends JPanel {
 	
@@ -38,5 +40,9 @@ public class ChartItemsPanel extends JPanel {
 	public void removeItemPanel(ItemPanel i) {
 		itemsPanel.removeItemPanel(i);
 		
+	}
+
+	public void generateValueFields(ItemPanel i, ValuePanel v, Chart c) {
+		itemsPanel.generateValueFields(i, v, c);
 	}
 }

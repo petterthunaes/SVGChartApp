@@ -54,4 +54,9 @@ public class SVGChartApp extends JFrame {
 		
 	}
 
+	public void generateValueFields(ItemPanel i, ValuePanel v) {
+		center.generateValueFields(i, v);
+		
+	}
+
 }

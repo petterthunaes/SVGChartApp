@@ -59,4 +59,13 @@ public class SVGChartApp extends JFrame {
 		
 	}
 
+	public void exit() {
+		System.exit(0);
+	}
+
+	public void save() {
+		center.save();
+		
+	}
+
 }

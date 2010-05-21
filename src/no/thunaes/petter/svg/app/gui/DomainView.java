@@ -47,5 +47,10 @@ public class DomainView extends JPanel {
 		chartPanel.generateValueFields(i, v);
 		
 	}
+
+	public void save() {
+		chartPanel.save();
+		
+	}
 	
 }

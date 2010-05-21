@@ -46,4 +46,8 @@ public class CenterPanel extends JPanel {
 		
 	}
 
+	public void save() {
+		domainview.save();
+	}
+
 }

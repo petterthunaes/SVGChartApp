@@ -40,6 +40,16 @@ public class Controller {
 		
 	}
 
+	public static void exit() {
+		ui.exit();
+		
+	}
+
+	public static void save() {
+		ui.save();
+		
+	}
+
 
 
 }

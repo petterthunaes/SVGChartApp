@@ -25,7 +25,6 @@ public class ValuePanel extends JPanel implements ActionListener, DocumentListen
 	private ItemPanel itemPanel;
 	private Value value;
 	
-	//private ArrayList<JLabel> labelStorage = new ArrayList<JLabel>();
 	private ArrayList<JTextField> textfieldStorage = new ArrayList<JTextField>();
 	
 	public ValuePanel(ItemPanel itemPanel, Value value) {
@@ -49,8 +48,7 @@ public class ValuePanel extends JPanel implements ActionListener, DocumentListen
 	public void generateValueFields(Chart c) {
 		for(int i = 0; i < c.getDimensionCount(); i++) {
 			JLabel label = new JLabel(c.getRange(i).getName());
-			label.setPreferredSize(new Dimension(92,15));
-			//labelStorage.add(label);
+			label.setPreferredSize(new Dimension(92,15));	
 			add(label);
 		}
 		

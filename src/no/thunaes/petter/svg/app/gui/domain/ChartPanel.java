@@ -1,7 +1,12 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+
+import no.smidsrod.robin.svg.library.SVGRenderer;
 
 public class ChartPanel extends JPanel {
 	
@@ -38,6 +43,16 @@ public class ChartPanel extends JPanel {
 
 	public void generateValueFields(ItemPanel i, ValuePanel v) {
 		chartItems.generateValueFields(i, v, chartSettings.getChart());
+	}
+	
+	public void save() {
+		SVGRenderer r = chartSettings.getChart().getSVGRenderer();
+		r.setPrettyPrint(true);
+		try {
+			r.storeSVGDocument(new File("C:\\Temp\\app_chart.svg"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

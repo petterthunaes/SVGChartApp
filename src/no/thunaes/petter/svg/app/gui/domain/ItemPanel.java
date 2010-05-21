@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -45,10 +46,13 @@ public class ItemPanel extends JPanel implements ActionListener, DocumentListene
 	public ItemPanel(Item item) {
 		this.item = item;
 		
+		Random randNumb = new Random();
+		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setPreferredSize(new Dimension(390, 65));
 
-		valColor.setForeground(item.getColor());
+		valColor.setOpaque(true);
+		valColor.setBackground(new Color(randNumb.nextInt(256),randNumb.nextInt(256),randNumb.nextInt(256)));
 		valHighl.setSelected(item.isHighlighted());
 		valLabel.setText(item.getName());
 		
@@ -131,7 +135,7 @@ public class ItemPanel extends JPanel implements ActionListener, DocumentListene
 		dialog.setVisible(true);
 		Color color = chooser.getColor();
 		item.setColor(color);
-		valColor.setOpaque(true);
+		//valColor.setOpaque(true);
 		valColor.setBackground(color);
 	}
 

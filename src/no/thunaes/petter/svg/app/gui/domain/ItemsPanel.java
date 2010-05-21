@@ -1,7 +1,5 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
-import java.util.List;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -14,18 +12,21 @@ public class ItemsPanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 
-	public void addItemPanel() {
-		add(new ItemPanel());
+	public void addItemPanel(Chart c) {
+		Item item = new Item("");
+		add(new ItemPanel(item));
+		c.getItemList().add(item);
 		updateUI();
 	}
 	
-	public void removeItemPanel(ItemPanel i) {
+	public void removeItemPanel(ItemPanel i, Chart c) {
+		c.getItemList().remove(i.getItem());
 		remove(i);
 		updateUI();
 	}
 
-	public void addValuePanel(ItemPanel i) {
-		i.addValuePanel();
+	public void addValuePanel(ItemPanel i, Chart c) {
+		i.addValuePanel(c);
 		
 	}
 

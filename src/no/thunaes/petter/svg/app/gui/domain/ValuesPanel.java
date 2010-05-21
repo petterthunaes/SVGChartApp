@@ -6,10 +6,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import no.smidsrod.robin.svg.library.Chart;
+import no.smidsrod.robin.svg.library.Value;
 
 public class ValuesPanel extends JPanel {
-
-	//List<ValuePanel> valuePanels = new ArrayList<ValuePanel>();
 	
 	private ItemPanel itemPanel;
 
@@ -18,15 +17,15 @@ public class ValuesPanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	
-	public void addValuePanel() {
-		ValuePanel valuePanel = new ValuePanel(itemPanel);
-		//valuePanels.add(valuePanel);
-		add(valuePanel);
+	public void addValuePanel(Chart c) {
+		Value value = new Value(c.getDimensionCount());
+		itemPanel.getItem().getValueList().add(value);
+		add(new ValuePanel(itemPanel, value));
 		updateUI();
 	}
 
 	public void removeValuePanel(ValuePanel v) {
-		//valuePanels.remove(v);
+		itemPanel.getItem().getValueList().remove(v.getValue());
 		remove(v);
 		updateUI();
 	}

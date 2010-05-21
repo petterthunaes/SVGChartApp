@@ -20,14 +20,14 @@ public class ChartItemsPanel extends JPanel {
 		add(scrollPanel);
 	}
 
-	public void addItemPanel() {
-		itemsPanel.addItemPanel();
+	public void addItemPanel(Chart c) {
+		itemsPanel.addItemPanel(c);
 		updateUI();
 		
 	}
 
-	public void addValuePanel(ItemPanel i) {
-		itemsPanel.addValuePanel(i);
+	public void addValuePanel(ItemPanel i, Chart c) {
+		itemsPanel.addValuePanel(i,c);
 		
 	}
 
@@ -36,8 +36,8 @@ public class ChartItemsPanel extends JPanel {
 		
 	}
 
-	public void removeItemPanel(ItemPanel i) {
-		itemsPanel.removeItemPanel(i);
+	public void removeItemPanel(ItemPanel i, Chart c) {
+		itemsPanel.removeItemPanel(i,c);
 		
 	}
 

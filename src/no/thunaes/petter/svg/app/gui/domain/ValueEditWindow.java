@@ -16,8 +16,8 @@ public class ValueEditWindow extends JFrame {
 		add(valuesPanel = new ValuesPanel(itemPanel), BorderLayout.CENTER);
 	}
 
-	public void addValuePanel() {
-		valuesPanel.addValuePanel();
+	public void addValuePanel(Chart c) {
+		valuesPanel.addValuePanel(c);
 		
 	}
 

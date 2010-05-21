@@ -21,11 +21,11 @@ public class ChartPanel extends JPanel {
 	}
 
 	public void addItemPanel() {
-		chartItems.addItemPanel();	
+		chartItems.addItemPanel(chartSettings.getChart());	
 	}
 
 	public void addValuePanel(ItemPanel i) {
-		chartItems.addValuePanel(i);	
+		chartItems.addValuePanel(i, chartSettings.getChart());	
 	}
 
 	public void removeValuePanel(ItemPanel i, ValuePanel v) {
@@ -33,7 +33,7 @@ public class ChartPanel extends JPanel {
 	}
 
 	public void removeItemPanel(ItemPanel i) {
-		chartItems.removeItemPanel(i);
+		chartItems.removeItemPanel(i, chartSettings.getChart());
 	}
 
 	public void generateValueFields(ItemPanel i, ValuePanel v) {

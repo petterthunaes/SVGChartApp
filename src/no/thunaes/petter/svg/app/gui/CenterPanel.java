@@ -50,4 +50,9 @@ public class CenterPanel extends JPanel {
 		domainview.save();
 	}
 
+	public void enableAddItem() {
+		domainview.enableAddItem();
+		
+	}
+
 }

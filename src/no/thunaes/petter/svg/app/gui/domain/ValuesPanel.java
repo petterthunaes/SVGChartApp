@@ -1,7 +1,5 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -12,9 +10,10 @@ public class ValuesPanel extends JPanel {
 	
 	private ItemPanel itemPanel;
 
+
 	public ValuesPanel(ItemPanel itemPanel) {
-		this.itemPanel = itemPanel;
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.itemPanel = itemPanel;	
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 	}
 	
 	public void addValuePanel(Chart c) {

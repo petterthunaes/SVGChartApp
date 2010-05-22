@@ -22,7 +22,7 @@ public class SVGChartApp extends JFrame {
 		
 		add(north = new NorthPanel(), BorderLayout.NORTH);
 		add(center = new CenterPanel(), BorderLayout.CENTER);
-		add(south = new SouthPanel(), BorderLayout.SOUTH);
+		//add(south = new SouthPanel(), BorderLayout.SOUTH);
 		
 		setSize(400,600);
 		setResizable(true);
@@ -65,6 +65,11 @@ public class SVGChartApp extends JFrame {
 
 	public void save() {
 		center.save();
+		
+	}
+
+	public void enableAddItem() {
+		center.enableAddItem();
 		
 	}
 

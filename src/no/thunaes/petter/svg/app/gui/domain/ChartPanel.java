@@ -55,4 +55,9 @@ public class ChartPanel extends JPanel {
 		}
 	}
 
+	public void enableAddItem() {
+		chartMenu.enableAddItem();
+		
+	}
+
 }

@@ -2,10 +2,12 @@ package no.thunaes.petter.svg.app.gui.domain;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,10 +22,13 @@ import no.thunaes.petter.svg.app.Controller;
 
 public class ValuePanel extends JPanel implements ActionListener, DocumentListener {
 	
-	private JButton removeVal = new JButton("-");
+	private JButton removeVal = new JButton("Remove");
 	
 	private ItemPanel itemPanel;
 	private Value value;
+	
+	private JPanel labelPanel = new JPanel();
+	private JPanel txtbxPanel = new JPanel();
 	
 	private ArrayList<JTextField> textfieldStorage = new ArrayList<JTextField>();
 	
@@ -31,13 +36,22 @@ public class ValuePanel extends JPanel implements ActionListener, DocumentListen
 		this.itemPanel = itemPanel;
 		this.value = value;
 		
+		setPreferredSize(new Dimension(340, 65));
 		setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		labelPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		labelPanel.setPreferredSize(new Dimension(400, 20));
+		txtbxPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		txtbxPanel.setPreferredSize(new Dimension(400, 35));
 		
 		Controller.generateValueFields(itemPanel, this);
 
 		removeVal.addActionListener(this);
-
-		add(removeVal);
+		
+		txtbxPanel.add(removeVal);
+		
+		add(labelPanel);
+		add(txtbxPanel);
 	}
 
 	@Override
@@ -46,10 +60,14 @@ public class ValuePanel extends JPanel implements ActionListener, DocumentListen
 	}
 
 	public void generateValueFields(Chart c) {
-		for(int i = 0; i < c.getDimensionCount(); i++) {
-			JLabel label = new JLabel(c.getRange(i).getName());
+		for(int i = 0; i < c.getDimensionCount(); i++) {			
+			String name = c.getRange(i).getName();
+			if (name.isEmpty()) {
+				name = "Axis " + i;
+			}
+			JLabel label = new JLabel(name);
 			label.setPreferredSize(new Dimension(92,15));	
-			add(label);
+			labelPanel.add(label);
 		}
 		
 		for(int i = 0; i < c.getDimensionCount(); i++) {
@@ -57,7 +75,7 @@ public class ValuePanel extends JPanel implements ActionListener, DocumentListen
 			textfield.getDocument().addDocumentListener(this);
 			textfield.setText(value.get(i) + "");
 			textfieldStorage.add(textfield);
-			add(textfield);
+			txtbxPanel.add(textfield);
 		}
 	}
 

@@ -12,11 +12,12 @@ import no.thunaes.petter.svg.app.Controller;
 
 public class ChartMenuPanel extends JPanel implements ActionListener {
 
-	private JButton addItemButton = new JButton("+");
+	private JButton addItemButton = new JButton("Add Item");
 	
 	public ChartMenuPanel() {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		addItemButton.addActionListener(this);
+		addItemButton.setEnabled(false);
 		add(addItemButton);
 		
 	}
@@ -26,4 +27,9 @@ public class ChartMenuPanel extends JPanel implements ActionListener {
 		Controller.addItemPanel();
 		
 	}
+
+	public void enableAddItem() {
+		addItemButton.setEnabled(true);
+	}
+	
 }

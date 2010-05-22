@@ -30,8 +30,8 @@ public class ItemPanel extends JPanel implements ActionListener, DocumentListene
 	
 	private ValueEditWindow valueEditWindow;
 	
-	private JButton valueAdd = new JButton("V");
-	private JButton valueDel = new JButton("-");
+	private JButton valueAdd = new JButton("Values");
+	private JButton valueDel = new JButton("Remove");
 	
 	private JLabel labName = new JLabel("Label");
 	private JLabel labColr = new JLabel("Color");
@@ -49,18 +49,22 @@ public class ItemPanel extends JPanel implements ActionListener, DocumentListene
 		Random randNumb = new Random();
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		setPreferredSize(new Dimension(390, 65));
+		setPreferredSize(new Dimension(390, 70));
 
+		
 		valColor.setOpaque(true);
 		valColor.setBackground(new Color(randNumb.nextInt(256),randNumb.nextInt(256),randNumb.nextInt(256)));
+		item.setColor(valColor.getBackground());
 		valHighl.setSelected(item.isHighlighted());
 		valLabel.setText(item.getName());
 		
+		valueAdd.setPreferredSize(new Dimension(80, 25));
+		valueDel.setPreferredSize(new Dimension(80, 25));
 		labName.setPreferredSize(new Dimension(115, 15));
-		labColr.setPreferredSize(new Dimension(82,15));
-		labHigh.setPreferredSize(new Dimension(60,15));
-		valColor.setPreferredSize(new Dimension(82,15));
-		valHighl.setPreferredSize(new Dimension(60,15));
+		labColr.setPreferredSize(new Dimension(70,15));
+		labHigh.setPreferredSize(new Dimension(72,15));
+		valColor.setPreferredSize(new Dimension(70,15));
+		valHighl.setPreferredSize(new Dimension(73,15));
 
 		valLabel.getDocument().addDocumentListener(this);
 		valHighl.addItemListener(this);
@@ -73,10 +77,10 @@ public class ItemPanel extends JPanel implements ActionListener, DocumentListene
 		add(labName);
 		add(labColr);
 		add(labHigh);
+		add(valueAdd);
 		add(valLabel);
 		add(valColor);
 		add(valHighl);
-		add(valueAdd);
 		add(valueDel);
 		
 	}

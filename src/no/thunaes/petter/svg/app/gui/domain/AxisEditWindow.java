@@ -48,7 +48,7 @@ public class AxisEditWindow extends JFrame implements ActionListener, DocumentLi
 		
 		setSize(270,300);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		setTitle("Axis-settings " + range.getDimension());		
+		setTitle("Axis settings " + range.getDimension());		
 		
 		JPanel axisPanel = new JPanel();
 		JPanel gridPanel = new JPanel();
@@ -88,6 +88,10 @@ public class AxisEditWindow extends JFrame implements ActionListener, DocumentLi
 		labAxis.setPreferredSize(title_size);
 		labGrid.setPreferredSize(title_size);
 
+		
+		buttPanel.add(btnClose);
+		add(buttPanel);
+		
 		add(labAxis);
 		axisPanel.add(labMin);
 		axisPanel.add(labMax);
@@ -106,10 +110,7 @@ public class AxisEditWindow extends JFrame implements ActionListener, DocumentLi
 		gridPanel.add(txtInt);
 		gridPanel.add(txtCun);
 		add(gridPanel);
-		
-		buttPanel.add(btnClose);
-		add(buttPanel);
-		
+
 		setVisible(true);
 	}
 

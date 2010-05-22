@@ -52,5 +52,10 @@ public class DomainView extends JPanel {
 		chartPanel.save();
 		
 	}
+
+	public void enableAddItem() {
+		chartPanel.enableAddItem();
+		
+	}
 	
 }

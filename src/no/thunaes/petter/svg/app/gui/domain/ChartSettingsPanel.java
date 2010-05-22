@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,6 +20,7 @@ import no.smidsrod.robin.svg.library.Chart;
 import no.smidsrod.robin.svg.library.LineChart;
 import no.smidsrod.robin.svg.library.ScatterChart;
 import no.smidsrod.robin.svg.library.SectorChart;
+import no.thunaes.petter.svg.app.Controller;
 
 public class ChartSettingsPanel extends JPanel implements ActionListener, DocumentListener {
 
@@ -28,12 +30,21 @@ public class ChartSettingsPanel extends JPanel implements ActionListener, Docume
 	private JTextArea chartDesc = new JTextArea(5, 32);
 	private JComboBox chartType = new JComboBox(chartTypes);
 	
+	private JLabel typeLabel = new JLabel("Chart type");
+	private JLabel nameLabel = new JLabel("Chart name");
+	private JLabel descLabel = new JLabel("Chart description");
+	
 	private Chart chart;
 	private ChartAxisPanel chartAxisPanel;
 
 	public ChartSettingsPanel() {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		setPreferredSize(new Dimension(400, 175));
+		setPreferredSize(new Dimension(400, 205));
+		
+		typeLabel.setPreferredSize(new Dimension(70, 15));
+		nameLabel.setPreferredSize(new Dimension(300, 15));
+		descLabel.setPreferredSize(new Dimension(370, 15));
+		
 		chartDesc.setBorder(BorderFactory.createEtchedBorder());
 
 		chartName.getDocument().addDocumentListener(this);
@@ -43,8 +54,11 @@ public class ChartSettingsPanel extends JPanel implements ActionListener, Docume
 		chartName.setEnabled(false);
 		chartDesc.setEnabled(false);
 		
+		add(typeLabel);
+		add(nameLabel);
 		add(chartType);
 		add(chartName);
+		add(descLabel);
 		add(chartDesc);
 		add(chartAxisPanel = new ChartAxisPanel());
 	}
@@ -75,6 +89,7 @@ public class ChartSettingsPanel extends JPanel implements ActionListener, Docume
 		chartDesc.setText(chart.getDescription());
 		
 		chartAxisPanel.updateRange(chart.getRanges());
+		Controller.enableAddItem();
 		updateUI();	
 	}
 

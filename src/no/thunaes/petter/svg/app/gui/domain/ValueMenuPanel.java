@@ -11,7 +11,7 @@ import no.thunaes.petter.svg.app.Controller;
 
 public class ValueMenuPanel extends JPanel implements ActionListener {
 	
-	private JButton valueAddButton = new JButton("Add");
+	private JButton valueAddButton = new JButton("Add Value");
 	private ItemPanel itemPanel;
 	
 	public ValueMenuPanel(ItemPanel itemPanel) {

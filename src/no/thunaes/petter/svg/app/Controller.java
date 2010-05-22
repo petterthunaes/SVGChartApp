@@ -50,6 +50,11 @@ public class Controller {
 		
 	}
 
+	public static void enableAddItem() {
+		ui.enableAddItem();
+		
+	}
+
 
 
 }

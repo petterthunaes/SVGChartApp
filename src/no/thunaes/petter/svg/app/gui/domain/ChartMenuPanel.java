@@ -29,7 +29,12 @@ public class ChartMenuPanel extends JPanel implements ActionListener {
 	}
 
 	public void enableAddItem() {
-		addItemButton.setEnabled(true);
+		if(addItemButton.isEnabled()) {
+			addItemButton.setEnabled(false);
+		} else {
+			addItemButton.setEnabled(true);
+		}
+		
 	}
 	
 }

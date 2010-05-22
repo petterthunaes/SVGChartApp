@@ -13,12 +13,14 @@ public class MainMenu extends JMenuBar implements ActionListener {
 
 	JMenuItem save = new JMenuItem("Save");
 	JMenuItem exit = new JMenuItem("Exit");
+	JMenuItem newChart = new JMenuItem("New");
 	
 	public MainMenu() {
 		JMenu file = new JMenu("File");
 		
 		file.add(save).addActionListener(this);
 		file.add(exit).addActionListener(this);
+		file.add(newChart).addActionListener(this);
 		
 		add(file);
 		
@@ -31,6 +33,9 @@ public class MainMenu extends JMenuBar implements ActionListener {
 		}
 		if (arg0.getSource().equals(exit)) {
 			Controller.exit();
+		}
+		if (arg0.getSource().equals(newChart)) {
+			Controller.createNewChart();
 		}
 		
 	}

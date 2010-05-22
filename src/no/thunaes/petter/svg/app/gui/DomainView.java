@@ -57,5 +57,10 @@ public class DomainView extends JPanel {
 		chartPanel.enableAddItem();
 		
 	}
+
+	public void createNewChart() {
+		chartPanel.createNewChart();
+		
+	}
 	
 }

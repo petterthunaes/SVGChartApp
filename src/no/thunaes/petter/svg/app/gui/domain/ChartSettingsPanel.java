@@ -121,5 +121,9 @@ public class ChartSettingsPanel extends JPanel implements ActionListener, Docume
 	public Chart getChart() {
 		return chart;
 	}
+
+	public void createNewChart() {
+		// Do something to create a new chart instance and wipe all data
+	}
 	
 }

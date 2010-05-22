@@ -55,4 +55,9 @@ public class CenterPanel extends JPanel {
 		
 	}
 
+	public void createNewChart() {
+		domainview.createNewChart();
+		
+	}
+
 }

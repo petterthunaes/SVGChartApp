@@ -55,6 +55,11 @@ public class Controller {
 		
 	}
 
+	public static void createNewChart() {
+		ui.createNewChart();
+		
+	}
+
 
 
 }

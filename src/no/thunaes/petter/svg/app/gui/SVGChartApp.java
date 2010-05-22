@@ -73,4 +73,9 @@ public class SVGChartApp extends JFrame {
 		
 	}
 
+	public void createNewChart() {
+		center.createNewChart();
+		
+	}
+
 }

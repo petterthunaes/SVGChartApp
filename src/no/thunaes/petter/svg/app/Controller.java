@@ -7,59 +7,49 @@ import no.thunaes.petter.svg.app.gui.domain.ValuePanel;
 public class Controller {
 
 	private static SVGChartApp ui;
-	
+
 	public static void init(SVGChartApp ui) {
 		Controller.ui = ui;
 	}
 
-	public static void addItemPanel() {
-		ui.addItemPanel();		
+	public static void exit() {
+		ui.exit();
 	}
-	
+
+	public static void newChart() {
+		ui.newChart();
+	}
+
+	public static void renderChart() {
+		ui.renderChart();
+	}
+
+	public static void addItemPanel() {
+		ui.addItemPanel();
+	}
+
 	public static void addValuePanel(ItemPanel i) {
 		ui.addValuePanel(i);
 	}
-	
+
 	public static void reCalcUI() {
 		ui.reCalcUI();
 	}
 
 	public static void removeValuePanel(ItemPanel i, ValuePanel v) {
-		ui.removeValuePanel(i,v);
-		
+		ui.removeValuePanel(i, v);
 	}
 
 	public static void removeItemPanel(ItemPanel i) {
 		ui.removeItemPanel(i);
-		
 	}
 
-	public static void generateValueFields(ItemPanel i,
-			ValuePanel v) {
+	public static void generateValueFields(ItemPanel i, ValuePanel v) {
 		ui.generateValueFields(i, v);
-		
-	}
-
-	public static void exit() {
-		ui.exit();
-		
-	}
-
-	public static void save() {
-		ui.save();
-		
 	}
 
 	public static void enableAddItem() {
 		ui.enableAddItem();
-		
 	}
-
-	public static void createNewChart() {
-		ui.createNewChart();
-		
-	}
-
-
 
 }

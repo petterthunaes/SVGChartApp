@@ -10,19 +10,22 @@ import javax.swing.JPanel;
 import no.thunaes.petter.svg.app.Controller;
 
 public class ValueMenuPanel extends JPanel implements ActionListener {
-	
-	private JButton valueAddButton = new JButton("Add Value");
+
+	private static final long serialVersionUID = 1L;
+
 	private ItemPanel itemPanel;
-	
+
 	public ValueMenuPanel(ItemPanel itemPanel) {
 		this.itemPanel = itemPanel;
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		valueAddButton.addActionListener(this);
-		add(valueAddButton);
+
+		JButton addValueButton = new JButton("Add Value");
+		addValueButton.addActionListener(this);
+		add(addValueButton);
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		Controller.addValuePanel(itemPanel);
 	}
 }

@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,158 +19,173 @@ import javax.swing.text.Document;
 
 import no.smidsrod.robin.svg.library.Range;
 
-public class AxisEditWindow extends JFrame implements ActionListener, DocumentListener {
-	
-	private JLabel labMin = new JLabel("Min");
-	private JLabel labMax = new JLabel("Max");
-	private JLabel labUni = new JLabel("Unit");	
-	private JLabel labNam = new JLabel("Name");
-	private JLabel labInt = new JLabel("Interval");
-	private JLabel labCun = new JLabel("Count");
-	
-	private JTextField txtMin = new JTextField(5);
-	private JTextField txtMax = new JTextField(5);
-	private JTextField txtUni = new JTextField(5);
-	private JTextField txtNam = new JTextField(5);
-	private JTextField txtInt = new JTextField(5);
-	private JTextField txtCun = new JTextField(5);
-	
-	private JLabel labAxis = new JLabel("Axis options");
-	private JLabel labGrid = new JLabel("Grid options");
-	
-	private JButton btnClose = new JButton("Close");
-	
+public class AxisEditWindow extends JFrame implements ActionListener,
+		DocumentListener {
+
+	private static final long serialVersionUID = 1L;
+
+	private JLabel axisOptionsLabel = new JLabel("Axis options");
+	private JLabel gridOptionsLabel = new JLabel("Grid options");
+
+	private JLabel minLabel = new JLabel("Min");
+	private JLabel maxLabel = new JLabel("Max");
+	private JLabel unitLabel = new JLabel("Unit");
+	private JLabel nameLabel = new JLabel("Name");
+	private JLabel distanceLabel = new JLabel("Distance");
+	private JLabel countLabel = new JLabel("Count");
+
+	private JTextField minText = new JTextField(5);
+	private JTextField maxText = new JTextField(5);
+	private JTextField unitText = new JTextField(5);
+	private JTextField nameText = new JTextField(5);
+	private JTextField distanceText = new JTextField(5);
+	private JTextField countText = new JTextField(5);
+
+	private JButton closeButton = new JButton("Close");
+
 	private Range range;
-	
+	private NumberFormat numberFormat;
+
 	public AxisEditWindow(Range range) {
 		this.range = range;
-		
-		setSize(270,300);
+
+		setSize(270, 300);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		setTitle("Axis settings " + range.getDimension());		
-		
+		setTitle("Settings for axis " + (range.getDimension() + 1));
+		setLocationRelativeTo(null);
+
 		JPanel axisPanel = new JPanel();
 		JPanel gridPanel = new JPanel();
-		JPanel buttPanel = new JPanel();
-		
+		JPanel buttonPanel = new JPanel();
+
 		axisPanel.setLayout(new GridLayout(0, 4));
 		gridPanel.setLayout(new GridLayout(0, 2));
-		buttPanel.setLayout(new GridLayout(0, 1));
-		
-		Dimension label_size = new Dimension(60,10);
-		Dimension title_size = new Dimension(220,20);
-		
-		txtMax.getDocument().addDocumentListener(this);
-		txtMin.getDocument().addDocumentListener(this);
-		txtUni.getDocument().addDocumentListener(this);
-		txtNam.getDocument().addDocumentListener(this);
-		txtCun.getDocument().addDocumentListener(this);
-		txtInt.getDocument().addDocumentListener(this);
-		btnClose.addActionListener(this);
-		
-		NumberFormat nf = NumberFormat.getNumberInstance(Locale.ENGLISH);
-		nf.setMaximumFractionDigits(2);
-		
-		txtMax.setText(nf.format(range.getMax()) + "");
-		txtMin.setText(nf.format(range.getMin()) + "");
-		txtUni.setText(range.getUnit());
-		txtNam.setText(range.getName());
-		txtInt.setText(nf.format(range.getGridlineDistance()) + "");
-		txtCun.setText(range.getGridlineCount() + "");
-		
-		labMin.setPreferredSize(label_size);
-		labMax.setPreferredSize(label_size);
-		labUni.setPreferredSize(label_size);
-		labNam.setPreferredSize(label_size);
-		labInt.setPreferredSize(label_size);
-		labCun.setPreferredSize(label_size);		
-		labAxis.setPreferredSize(title_size);
-		labGrid.setPreferredSize(title_size);
+		buttonPanel.setLayout(new GridLayout(0, 1));
 
-		
-		buttPanel.add(btnClose);
-		add(buttPanel);
-		
-		add(labAxis);
-		axisPanel.add(labMin);
-		axisPanel.add(labMax);
-		axisPanel.add(labUni);
-		axisPanel.add(labNam);
-		axisPanel.add(txtMin);
-		axisPanel.add(txtMax);
-		axisPanel.add(txtUni);
-		axisPanel.add(txtNam);
+		maxText.getDocument().addDocumentListener(this);
+		minText.getDocument().addDocumentListener(this);
+		unitText.getDocument().addDocumentListener(this);
+		nameText.getDocument().addDocumentListener(this);
+		countText.getDocument().addDocumentListener(this);
+		distanceText.getDocument().addDocumentListener(this);
+		closeButton.addActionListener(this);
+
+		if ( range.isMinSet() ) {
+			minText.setText(getFormatter().format(range.getMin()));
+		}
+		if ( range.isMaxSet() ) {
+			maxText.setText(getFormatter().format(range.getMax()));
+		}
+		unitText.setText(range.getUnit());
+		nameText.setText(range.getName());
+		distanceText
+				.setText(getFormatter().format(range.getGridlineDistance()));
+		countText.setText(range.getGridlineCount() + "");
+
+		Dimension labelSize = new Dimension(60, 10);
+		minLabel.setPreferredSize(labelSize);
+		maxLabel.setPreferredSize(labelSize);
+		unitLabel.setPreferredSize(labelSize);
+		nameLabel.setPreferredSize(labelSize);
+		distanceLabel.setPreferredSize(labelSize);
+		countLabel.setPreferredSize(labelSize);
+
+		Dimension titleSize = new Dimension(220, 20);
+		axisOptionsLabel.setPreferredSize(titleSize);
+		gridOptionsLabel.setPreferredSize(titleSize);
+
+		buttonPanel.add(closeButton);
+		add(buttonPanel);
+
+		add(axisOptionsLabel);
+		axisPanel.add(nameLabel);
+		axisPanel.add(unitLabel);
+		axisPanel.add(minLabel);
+		axisPanel.add(maxLabel);
+		axisPanel.add(nameText);
+		axisPanel.add(unitText);
+		axisPanel.add(minText);
+		axisPanel.add(maxText);
 		add(axisPanel);
-		
-		add(labGrid);
-		
-		gridPanel.add(labInt);
-		gridPanel.add(labCun);	
-		gridPanel.add(txtInt);
-		gridPanel.add(txtCun);
+
+		add(gridOptionsLabel);
+
+		gridPanel.add(distanceLabel);
+		gridPanel.add(countLabel);
+		gridPanel.add(distanceText);
+		gridPanel.add(countText);
 		add(gridPanel);
 
 		setVisible(true);
 	}
 
+	private NumberFormat getFormatter() {
+		if (numberFormat == null) {
+			numberFormat = NumberFormat.getNumberInstance(Locale.ENGLISH);
+			numberFormat.setMaximumFractionDigits(2);
+		}
+		return numberFormat;
+	}
+
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource().equals(btnClose)) {
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(closeButton)) {
 			setVisible(false);
 		}
 	}
 
 	@Override
-	public void changedUpdate(DocumentEvent arg0) {
-		doDocumentEvent(arg0);		
+	public void changedUpdate(DocumentEvent e) {
+		handleDocumentEvent(e);
 	}
 
 	@Override
-	public void insertUpdate(DocumentEvent arg0) {
-		doDocumentEvent(arg0);		
+	public void insertUpdate(DocumentEvent e) {
+		handleDocumentEvent(e);
 	}
 
 	@Override
-	public void removeUpdate(DocumentEvent arg0) {
-		doDocumentEvent(arg0);		
+	public void removeUpdate(DocumentEvent e) {
+		handleDocumentEvent(e);
 	}
 
-	private void doDocumentEvent(DocumentEvent arg0) {
-		Document changed  = arg0.getDocument();
-		if (changed.equals(txtMax.getDocument())) {
-			double value = getDouble(txtMax);
-			if(value != Double.NaN) {
+	private void handleDocumentEvent(DocumentEvent e) {
+		Document changed = e.getDocument();
+		if (changed.equals(maxText.getDocument())) {
+			double value = getDouble(maxText);
+			if (value != Double.NaN) {
 				range.setMax(value);
 			}
 		}
-		if (changed.equals(txtMin.getDocument())) {
-			double value = getDouble(txtMin);
-			if(value != Double.NaN) {
+		if (changed.equals(minText.getDocument())) {
+			double value = getDouble(minText);
+			if (value != Double.NaN) {
 				range.setMin(value);
-			}			
+			}
 		}
-		if (changed.equals(txtUni.getDocument())) {
-			range.setName(txtUni.getText());
+		if (changed.equals(unitText.getDocument())) {
+			range.setUnit(unitText.getText());
 		}
-		if (changed.equals(txtNam.getDocument())) {
-			range.setName(txtNam.getText());
+		if (changed.equals(nameText.getDocument())) {
+			range.setName(nameText.getText());
 		}
-		if (changed.equals(txtCun.getDocument())) {
-			int value = getInt(txtCun);
+		if (changed.equals(countText.getDocument())) {
+			int value = getInt(countText);
 			if (value != Integer.MAX_VALUE) {
 				range.setGridlineCount(value);
-				txtInt.getDocument().removeDocumentListener(this);
-				txtInt.setText(range.getGridlineDistance() + "");
-				txtInt.getDocument().addDocumentListener(this);
-			}	
+				distanceText.getDocument().removeDocumentListener(this);
+				distanceText.setText(getFormatter().format(
+						range.getGridlineDistance()));
+				distanceText.getDocument().addDocumentListener(this);
+			}
 		}
-		if (changed.equals(txtInt.getDocument())) {
-			double value = getDouble(txtInt);
-			if(value != Double.NaN) {
+		if (changed.equals(distanceText.getDocument())) {
+			double value = getDouble(distanceText);
+			if (value != Double.NaN) {
 				range.setGridlineDistance(value);
-				txtCun.getDocument().removeDocumentListener(this);
-				txtCun.setText(range.getGridlineCount() + "");
-				txtCun.getDocument().addDocumentListener(this);
+				countText.getDocument().removeDocumentListener(this);
+				countText.setText(range.getGridlineCount() + "");
+				countText.getDocument().addDocumentListener(this);
 			}
 		}
 	}
@@ -199,5 +213,5 @@ public class AxisEditWindow extends JFrame implements ActionListener, DocumentLi
 		}
 		return Integer.MAX_VALUE;
 	}
-		
+
 }

@@ -1,6 +1,5 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -9,8 +8,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Random;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
@@ -20,147 +19,168 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
 
 import no.smidsrod.robin.svg.library.Chart;
 import no.smidsrod.robin.svg.library.Item;
 import no.thunaes.petter.svg.app.Controller;
 
-public class ItemPanel extends JPanel implements ActionListener, DocumentListener, ItemListener, MouseListener {
-	
-	private ValueEditWindow valueEditWindow;
-	
-	private JButton valueAdd = new JButton("Values");
-	private JButton valueDel = new JButton("Remove");
-	
-	private JLabel labName = new JLabel("Label");
-	private JLabel labColr = new JLabel("Color");
-	private JLabel labHigh = new JLabel("Highlight");
-	
-	private JLabel valColor = new JLabel("");
-	private JTextField valLabel = new JTextField(10);
-	private JCheckBox  valHighl = new JCheckBox();
+public class ItemPanel extends JPanel implements ActionListener,
+		DocumentListener, ItemListener, MouseListener {
 
+	private static final long serialVersionUID = 1L;
+
+	private JButton editValuesButton = new JButton("Values");
+	private JButton removeItemButton = new JButton("Remove");
+
+	private JLabel nameLabel = new JLabel("Label");
+	private JLabel colorLabel = new JLabel("Color");
+	private JLabel highlightLabel = new JLabel("Highlighted?");
+
+	private JLabel itemColorLabel = new JLabel("");
+	private JTextField itemNameText = new JTextField(10);
+	private JCheckBox itemHighlightedCheckbox = new JCheckBox();
+
+	private ValueEditWindow valueEditWindow;
 	private Item item;
-	
+
 	public ItemPanel(Item item) {
 		this.item = item;
-		
-		Random randNumb = new Random();
-		
+
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setPreferredSize(new Dimension(390, 70));
 
-		
-		valColor.setOpaque(true);
-		valColor.setBackground(new Color(randNumb.nextInt(256),randNumb.nextInt(256),randNumb.nextInt(256)));
-		item.setColor(valColor.getBackground());
-		valHighl.setSelected(item.isHighlighted());
-		valLabel.setText(item.getName());
-		
-		valueAdd.setPreferredSize(new Dimension(80, 25));
-		valueDel.setPreferredSize(new Dimension(80, 25));
-		labName.setPreferredSize(new Dimension(115, 15));
-		labColr.setPreferredSize(new Dimension(70,15));
-		labHigh.setPreferredSize(new Dimension(72,15));
-		valColor.setPreferredSize(new Dimension(70,15));
-		valHighl.setPreferredSize(new Dimension(73,15));
+		itemColorLabel.setOpaque(true);
+		itemColorLabel.setBorder(BorderFactory.createEtchedBorder());
+		itemColorLabel.setBackground(item.getColor());
 
-		valLabel.getDocument().addDocumentListener(this);
-		valHighl.addItemListener(this);
-		valColor.addMouseListener(this);
-		valueAdd.addActionListener(this);
-		valueDel.addActionListener(this);
-		
-		valueEditWindow = new ValueEditWindow(this);
-		
-		add(labName);
-		add(labColr);
-		add(labHigh);
-		add(valueAdd);
-		add(valLabel);
-		add(valColor);
-		add(valHighl);
-		add(valueDel);
-		
+		itemHighlightedCheckbox.setSelected(item.isHighlighted());
+		itemNameText.setText(item.getName());
+
+		Dimension buttonPreferredSize = new Dimension(80, 25);
+		editValuesButton.setPreferredSize(buttonPreferredSize);
+		removeItemButton.setPreferredSize(buttonPreferredSize);
+
+		nameLabel.setPreferredSize(new Dimension(115, 15));
+
+		Dimension colorLabelPreferredSize = new Dimension(70, 15);
+		colorLabel.setPreferredSize(colorLabelPreferredSize);
+		itemColorLabel.setPreferredSize(colorLabelPreferredSize);
+
+		Dimension highlightPreferredSize = new Dimension(73, 15);
+		highlightLabel.setPreferredSize(highlightPreferredSize);
+		itemHighlightedCheckbox.setPreferredSize(highlightPreferredSize);
+
+		itemNameText.getDocument().addDocumentListener(this);
+		itemHighlightedCheckbox.addItemListener(this);
+		itemColorLabel.addMouseListener(this);
+		editValuesButton.addActionListener(this);
+		removeItemButton.addActionListener(this);
+
+		add(nameLabel);
+		add(colorLabel);
+		add(highlightLabel);
+		add(editValuesButton);
+		add(itemNameText);
+		add(itemColorLabel);
+		add(itemHighlightedCheckbox);
+		add(removeItemButton);
+	}
+
+	public void addValuePanel(Chart c) {
+		getValueEditWindow().addValuePanel(c);
+	}
+
+	public void removeValuePanel(ValuePanel v) {
+		getValueEditWindow().removeValuePanel(v);
+	}
+
+	public void generateValueFields(ValuePanel v, Chart c) {
+		getValueEditWindow().generateValueFields(v, c);
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	private ValueEditWindow getValueEditWindow() {
+		if (valueEditWindow == null) {
+			valueEditWindow = new ValueEditWindow(this);
+		}
+		return valueEditWindow;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource().equals(valueAdd)) {
-			valueEditWindow.setVisible(true);
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(editValuesButton)) {
+			getValueEditWindow().setVisible(true);
 		}
-		if (arg0.getSource().equals(valueDel)) {
+		if (e.getSource().equals(removeItemButton)) {
 			Controller.removeItemPanel(this);
 		}
 	}
 
-	public void addValuePanel(Chart c) {
-		valueEditWindow.addValuePanel(c);	
-	}
-
-	public void removeValuePanel(ValuePanel v) {
-		valueEditWindow.removeValuePanel(v);
-	}
-
-	public void generateValueFields(ValuePanel v, Chart c) {
-		valueEditWindow.generateValueFields(v, c);		
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		handleDocumentEvent(e);
 	}
 
 	@Override
-	public void changedUpdate(DocumentEvent arg0) {
-		doDocumentEvent(arg0);
+	public void insertUpdate(DocumentEvent e) {
+		handleDocumentEvent(e);
 	}
 
 	@Override
-	public void insertUpdate(DocumentEvent arg0) {
-		doDocumentEvent(arg0);
+	public void removeUpdate(DocumentEvent e) {
+		handleDocumentEvent(e);
+	}
+
+	private void handleDocumentEvent(DocumentEvent e) {
+		if (e.getDocument().equals(itemNameText.getDocument())) {
+			item.setName(itemNameText.getText());
+			getValueEditWindow().updateTitle();
+		}
 	}
 
 	@Override
-	public void removeUpdate(DocumentEvent arg0) {
-		doDocumentEvent(arg0);
-	}
-
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		if (arg0.getStateChange() == ItemEvent.SELECTED) {
+	public void itemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
 			item.setHighlighted(true);
 		}
-		if (arg0.getStateChange() == ItemEvent.DESELECTED) {
+		if (e.getStateChange() == ItemEvent.DESELECTED) {
 			item.setHighlighted(false);
 		}
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		JColorChooser chooser = new JColorChooser();
-		JDialog dialog = JColorChooser.createDialog(this,"Color",true,chooser,null,null);
-		dialog.setVisible(true);
-		Color color = chooser.getColor();
-		item.setColor(color);
-		//valColor.setOpaque(true);
-		valColor.setBackground(color);
+	public void mouseClicked(MouseEvent e) {
+		final JColorChooser colorChooser = new JColorChooser();
+		ActionListener ok = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				itemColorLabel.setBackground(colorChooser.getColor());
+				item.setColor(itemColorLabel.getBackground());
+			}
+		};
+		JDialog colorChooserDialog = JColorChooser.createDialog(this,
+				"Select item color", true, colorChooser, ok, null);
+		colorChooserDialog.setVisible(true);
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
-
-	private void doDocumentEvent(DocumentEvent arg0) {
-		Document changed = arg0.getDocument();
-		if(changed.equals(valLabel.getDocument())) {
-			item.setName(valLabel.getText());
-		}
+	public void mouseEntered(MouseEvent e) {
 	}
-	
-	public Item getItem() {
-		return item;
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 	}
 
 }

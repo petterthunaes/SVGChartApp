@@ -11,32 +11,30 @@ import no.thunaes.petter.svg.app.Controller;
 
 public class MainMenu extends JMenuBar implements ActionListener {
 
-	JMenuItem save = new JMenuItem("Save");
-	JMenuItem exit = new JMenuItem("Exit");
-	JMenuItem newChart = new JMenuItem("New");
-	
+	private static final long serialVersionUID = 1L;
+
+	private JMenuItem newChart = new JMenuItem("New chart");
+	private JMenuItem renderChart = new JMenuItem("Render chart");
+	private JMenuItem exit = new JMenuItem("Exit");
+
 	public MainMenu() {
 		JMenu file = new JMenu("File");
-		
-		file.add(save).addActionListener(this);
-		file.add(exit).addActionListener(this);
 		file.add(newChart).addActionListener(this);
-		
+		file.add(renderChart).addActionListener(this);
+		file.add(exit).addActionListener(this);
 		add(file);
-		
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource().equals(save)) {
-			Controller.save();
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(newChart)) {
+			Controller.newChart();
 		}
-		if (arg0.getSource().equals(exit)) {
+		if (e.getSource().equals(renderChart)) {
+			Controller.renderChart();
+		}
+		if (e.getSource().equals(exit)) {
 			Controller.exit();
 		}
-		if (arg0.getSource().equals(newChart)) {
-			Controller.createNewChart();
-		}
-		
 	}
 }

@@ -1,11 +1,13 @@
 package no.thunaes.petter.svg.app.gui.domain;
 
+import java.awt.Dimension;
 import java.io.File;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import no.smidsrod.robin.svg.library.SVGRenderer;
@@ -16,7 +18,7 @@ public class ChartPanel extends JPanel {
 
 	private ChartMenuPanel chartMenu;
 	private ChartSettingsPanel chartSettingsPanel;
-	private ChartItemsPanel chartItems;
+	private ItemsPanel itemsPanel;
 
 	private File renderFile;
 
@@ -24,7 +26,17 @@ public class ChartPanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(chartSettingsPanel = new ChartSettingsPanel());
 		add(chartMenu = new ChartMenuPanel());
-		add(chartItems = new ChartItemsPanel());
+
+		JPanel layoutPanel = new JPanel();
+		layoutPanel.setLayout(new BoxLayout(layoutPanel, BoxLayout.Y_AXIS));
+		layoutPanel.setPreferredSize(new Dimension(400, 275));
+		JScrollPane scrollPanel = new JScrollPane(
+				itemsPanel = new ItemsPanel(),
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		layoutPanel.add(scrollPanel);
+
+		add(layoutPanel);
 	}
 
 	public void newChart() {
@@ -58,23 +70,23 @@ public class ChartPanel extends JPanel {
 	}
 
 	public void addItemPanel() {
-		chartItems.addItemPanel(chartSettingsPanel.getChart());
+		itemsPanel.addItemPanel(chartSettingsPanel.getChart());
 	}
 
 	public void addValuePanel(ItemPanel i) {
-		chartItems.addValuePanel(i, chartSettingsPanel.getChart());
+		itemsPanel.addValuePanel(i, chartSettingsPanel.getChart());
 	}
 
 	public void removeValuePanel(ItemPanel i, ValuePanel v) {
-		chartItems.removeValuePanel(i, v);
+		itemsPanel.removeValuePanel(i, v);
 	}
 
 	public void removeItemPanel(ItemPanel i) {
-		chartItems.removeItemPanel(i, chartSettingsPanel.getChart());
+		itemsPanel.removeItemPanel(i, chartSettingsPanel.getChart());
 	}
 
 	public void generateValueFields(ItemPanel i, ValuePanel v) {
-		chartItems.generateValueFields(i, v, chartSettingsPanel.getChart());
+		itemsPanel.generateValueFields(i, v, chartSettingsPanel.getChart());
 	}
 
 	public void enableAddItem() {

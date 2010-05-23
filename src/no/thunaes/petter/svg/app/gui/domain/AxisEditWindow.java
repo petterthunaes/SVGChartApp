@@ -70,10 +70,10 @@ public class AxisEditWindow extends JFrame implements ActionListener,
 		distanceText.getDocument().addDocumentListener(this);
 		closeButton.addActionListener(this);
 
-		if ( range.isMinSet() ) {
+		if (range.isMinSet()) {
 			minText.setText(getFormatter().format(range.getMin()));
 		}
-		if ( range.isMaxSet() ) {
+		if (range.isMaxSet()) {
 			maxText.setText(getFormatter().format(range.getMax()));
 		}
 		unitText.setText(range.getUnit());

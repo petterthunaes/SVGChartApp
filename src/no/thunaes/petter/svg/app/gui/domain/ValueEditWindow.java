@@ -42,6 +42,10 @@ public class ValueEditWindow extends JFrame {
 		return "Values for item: " + itemName;
 	}
 
+	public int getValuePanelCount() {
+		return valuesPanel.getComponentCount();
+	}
+
 	public void addValuePanel(Chart c) {
 		valuesPanel.addValuePanel(c);
 

@@ -17,6 +17,10 @@ public class ValuesPanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 	}
 
+	public int getValuePanelCount() {
+		return getComponentCount();
+	}
+
 	public void addValuePanel(Chart c) {
 		Value value = new Value(c.getDimensionCount());
 		itemPanel.getItem().getValueList().add(value);

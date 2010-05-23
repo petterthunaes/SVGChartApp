@@ -113,6 +113,7 @@ public class ItemPanel extends JPanel implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(editValuesButton)) {
 			getValueEditWindow().setVisible(true);
+			Controller.addValuePanel(this);
 		}
 		if (e.getSource().equals(removeItemButton)) {
 			Controller.removeItemPanel(this);

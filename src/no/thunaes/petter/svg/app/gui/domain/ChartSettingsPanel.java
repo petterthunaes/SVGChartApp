@@ -104,6 +104,7 @@ public class ChartSettingsPanel extends JPanel implements ActionListener,
 
 		chartAxisPanel.updateRange(getChart().getRanges());
 		Controller.enableAddItem();
+		Controller.addItemPanel();
 		updateUI();
 	}
 

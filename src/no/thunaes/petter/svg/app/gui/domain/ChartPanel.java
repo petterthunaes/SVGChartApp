@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import no.smidsrod.robin.svg.library.SVGRenderer;
+import no.smidsrod.robin.svg.library.renderer.SVGRenderer;
 
 public class ChartPanel extends JPanel {
 
